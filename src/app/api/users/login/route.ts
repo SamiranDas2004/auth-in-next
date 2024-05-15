@@ -28,6 +28,8 @@ export async function POST(request:NextRequest) {
         }
 
         const token=jwt.sign(tokendata,process.env.TOKEN_SECRET!,{expiresIn:'1d'})
+        console.log(token);
+        
 
         const response=NextResponse.json({message:"logged in Success",
             success:true

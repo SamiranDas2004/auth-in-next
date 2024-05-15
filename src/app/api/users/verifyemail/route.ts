@@ -9,12 +9,14 @@ connect()
 export async function POST(request:NextRequest) {
     try {
         const reqBody=await request.json();
-        const {token}=reqBody
+        const {email}=reqBody
+// console.log(token);
 
-        const user=await User.findOne({verifyToken:token})
+        const user:any=await User.findOne({email})
+console.log(user);
 
         if (!user) {
-            return NextResponse.json({error:"ivalid token"},{status:400})
+            return NextResponse.json({error:"invalid token"},{status:400})
         }
         
 
@@ -24,9 +26,9 @@ export async function POST(request:NextRequest) {
         user.verifyToken=undefined;
         user.verifyTokenExpiry=undefined
 
-        await user.save()
+        // await user.save()
         return NextResponse.json(
-            {message:"vefification successfull"},{status:200}
+            {message:"vefification successfull",data:user},{status:200}
         )
     } catch (error:any) {
         return NextResponse.json({error:error.message},{status:500})
