@@ -30,9 +30,10 @@ export async function POST(request:NextRequest) {
         const token=jwt.sign(tokendata,process.env.TOKEN_SECRET!,{expiresIn:'1d'})
         console.log(token);
         
-
+  user.isVerfied=true;
         const response=NextResponse.json({message:"logged in Success",
-            success:true
+            success:true,
+            user
         })
 
 

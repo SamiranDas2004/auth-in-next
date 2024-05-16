@@ -20,7 +20,7 @@ try {
   setLoading(true)
    await axios.post("/api/users/login",user);
    console.log("success");
-   route.push('/demo')
+   route.push('/profile')
 } catch (error) {
   console.log(error);
   

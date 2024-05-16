@@ -3,22 +3,32 @@ import User from "@/models/userMosel";
 import { NextRequest, NextResponse } from "next/server";
 import bcryptjs from "bcryptjs";
 import { sendEmail } from "@/helper/mailer";
-import { getTokenData } from "@/helper/getTokenData";
+
 import { error } from "console";
 
 connect()
 
-export async function GET(request:NextRequest){
-
+export async function POST(request: NextRequest) {
     try {
-        const userId = await getTokenData(request);
-        const user = await User.findOne({_id: userId}).select("-password");
+      
+        const { email } = await request.json();
+        
+       
+        if (!email) {
+            throw new Error("Email is missing in the request body");
+        }
+        
+       
+        const user = await User.findOne({ email });
+        
+        
         return NextResponse.json({
-            mesaaage: "User found",
+            message: "User found",
             data: user
-        })
+        });
     } catch (error:any) {
-        return NextResponse.json({error: error.message}, {status: 400});
+       
+        return NextResponse.json({ error: error.message }, { status: 400 });
     }
-
 }
+
