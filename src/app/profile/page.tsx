@@ -28,17 +28,7 @@ route.push("/verifyemail")
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
    
    
-    <label htmlFor="email">email</label>
-        <input 
-        placeholder='email'
-        id='email'
-        type="text"
-        value={user.email}
-        onChange={(e) => setUser({...user, email: e.target.value})}
-        />
-        <button
-        onClick={profile}
-        >click</button>
+   <h1 className='text-bold text-3xl'>Success</h1>
     </div>
   )
 }

@@ -44,7 +44,7 @@ export default function SignupPage() {
     }, [user]);
 
     useEffect(()=>{
-user.email="",
+user.email=""
 user.password="",
 user.username=""
     },[loading])
